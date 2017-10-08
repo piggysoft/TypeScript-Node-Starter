@@ -1,11 +1,10 @@
-import {} from "jest";
+import {} from 'jest';
 import * as supertest from "supertest";
-const app = require("../src/app");
-const request = supertest(app);
+const request = supertest("http://localhost:8000");
 
 describe("GET /", () => {
-  it("should return 200 OK", () => {
-    return request.get("/")
-      .expect(200);
+  it("should return 200 OK", (done) => {
+    request.get("/")
+      .expect(200, done);
   });
 });

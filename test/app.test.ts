@@ -1,11 +1,10 @@
-import {} from "jest";
+import {} from 'jest';
 import * as supertest from "supertest";
-const app = require("../src/app");
-const request = supertest(app);
+const request = supertest("http://localhost:8000");
 
 describe("GET /random-url", () => {
-  it("should return 404", () => {
-    return request.get("/reset")
-      .expect(404);
+  it("should return 404", (done) => {
+    request.get("/reset")
+      .expect(404, done);
   });
 });
