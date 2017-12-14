@@ -1,10 +1,9 @@
-import * as supertest from "supertest";
-const app = require("../src/app");
-const request = supertest(app);
+import * as request from "supertest";
+import * as app from "../src/app";
 
 describe("GET /contact", () => {
-  it("should return 200 OK", () => {
-    return request.get("/contact")
-      .expect(200);
+  it("should return 200 OK", (done) => {
+    request(app).get("/contact")
+      .expect(200, done);
   });
 });
