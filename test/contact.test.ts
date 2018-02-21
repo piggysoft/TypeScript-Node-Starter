@@ -1,8 +1,8 @@
-import request from "supertest";
-import app from "../src/app";
+import * as request from "supertest";
+import * as app from "../src/app";
 
-const chai = require("chai");
-const expect = chai.expect;
+var chai = require('chai');
+var expect = chai.expect;
 
 describe("GET /contact", () => {
   it("should return 200 OK", (done) => {
@@ -22,6 +22,6 @@ describe("POST /contact", () => {
         done();
       })
       .expect(302);
-
+      
   });
 });
