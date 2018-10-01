@@ -14,7 +14,7 @@ const request = require("express-validator");
  * GET /login
  * Login page.
  */
-export const getLogin = (req: Request, res: Response) => {
+export let getLogin = (req: Request, res: Response) => {
   if (req.user) {
     return res.redirect("/");
   }
@@ -27,7 +27,7 @@ export const getLogin = (req: Request, res: Response) => {
  * POST /login
  * Sign in using email and password.
  */
-export const postLogin = (req: Request, res: Response, next: NextFunction) => {
+export let postLogin = (req: Request, res: Response, next: NextFunction) => {
   req.assert("email", "Email is not valid").isEmail();
   req.assert("password", "Password cannot be blank").notEmpty();
   req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
@@ -57,7 +57,7 @@ export const postLogin = (req: Request, res: Response, next: NextFunction) => {
  * GET /logout
  * Log out.
  */
-export const logout = (req: Request, res: Response) => {
+export let logout = (req: Request, res: Response) => {
   req.logout();
   res.redirect("/");
 };
@@ -66,7 +66,7 @@ export const logout = (req: Request, res: Response) => {
  * GET /signup
  * Signup page.
  */
-export const getSignup = (req: Request, res: Response) => {
+export let getSignup = (req: Request, res: Response) => {
   if (req.user) {
     return res.redirect("/");
   }
@@ -79,7 +79,7 @@ export const getSignup = (req: Request, res: Response) => {
  * POST /signup
  * Create a new local account.
  */
-export const postSignup = (req: Request, res: Response, next: NextFunction) => {
+export let postSignup = (req: Request, res: Response, next: NextFunction) => {
   req.assert("email", "Email is not valid").isEmail();
   req.assert("password", "Password must be at least 4 characters long").len({ min: 4 });
   req.assert("confirmPassword", "Passwords do not match").equals(req.body.password);
@@ -119,7 +119,7 @@ export const postSignup = (req: Request, res: Response, next: NextFunction) => {
  * GET /account
  * Profile page.
  */
-export const getAccount = (req: Request, res: Response) => {
+export let getAccount = (req: Request, res: Response) => {
   res.render("account/profile", {
     title: "Account Management"
   });
@@ -129,7 +129,7 @@ export const getAccount = (req: Request, res: Response) => {
  * POST /account/profile
  * Update profile information.
  */
-export const postUpdateProfile = (req: Request, res: Response, next: NextFunction) => {
+export let postUpdateProfile = (req: Request, res: Response, next: NextFunction) => {
   req.assert("email", "Please enter a valid email address.").isEmail();
   req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
 
@@ -165,7 +165,7 @@ export const postUpdateProfile = (req: Request, res: Response, next: NextFunctio
  * POST /account/password
  * Update current password.
  */
-export const postUpdatePassword = (req: Request, res: Response, next: NextFunction) => {
+export let postUpdatePassword = (req: Request, res: Response, next: NextFunction) => {
   req.assert("password", "Password must be at least 4 characters long").len({ min: 4 });
   req.assert("confirmPassword", "Passwords do not match").equals(req.body.password);
 
@@ -191,7 +191,7 @@ export const postUpdatePassword = (req: Request, res: Response, next: NextFuncti
  * POST /account/delete
  * Delete user account.
  */
-export const postDeleteAccount = (req: Request, res: Response, next: NextFunction) => {
+export let postDeleteAccount = (req: Request, res: Response, next: NextFunction) => {
   User.remove({ _id: req.user.id }, (err) => {
     if (err) { return next(err); }
     req.logout();
@@ -204,7 +204,7 @@ export const postDeleteAccount = (req: Request, res: Response, next: NextFunctio
  * GET /account/unlink/:provider
  * Unlink OAuth provider.
  */
-export const getOauthUnlink = (req: Request, res: Response, next: NextFunction) => {
+export let getOauthUnlink = (req: Request, res: Response, next: NextFunction) => {
   const provider = req.params.provider;
   User.findById(req.user.id, (err, user: any) => {
     if (err) { return next(err); }
@@ -222,7 +222,7 @@ export const getOauthUnlink = (req: Request, res: Response, next: NextFunction) 
  * GET /reset/:token
  * Reset Password page.
  */
-export const getReset = (req: Request, res: Response, next: NextFunction) => {
+export let getReset = (req: Request, res: Response, next: NextFunction) => {
   if (req.isAuthenticated()) {
     return res.redirect("/");
   }
@@ -245,7 +245,7 @@ export const getReset = (req: Request, res: Response, next: NextFunction) => {
  * POST /reset/:token
  * Process the reset password request.
  */
-export const postReset = (req: Request, res: Response, next: NextFunction) => {
+export let postReset = (req: Request, res: Response, next: NextFunction) => {
   req.assert("password", "Password must be at least 4 characters long.").len({ min: 4 });
   req.assert("confirm", "Passwords must match.").equals(req.body.password);
 
@@ -307,7 +307,7 @@ export const postReset = (req: Request, res: Response, next: NextFunction) => {
  * GET /forgot
  * Forgot Password page.
  */
-export const getForgot = (req: Request, res: Response) => {
+export let getForgot = (req: Request, res: Response) => {
   if (req.isAuthenticated()) {
     return res.redirect("/");
   }
@@ -320,7 +320,7 @@ export const getForgot = (req: Request, res: Response) => {
  * POST /forgot
  * Create a random token, then the send user an email with a reset link.
  */
-export const postForgot = (req: Request, res: Response, next: NextFunction) => {
+export let postForgot = (req: Request, res: Response, next: NextFunction) => {
   req.assert("email", "Please enter a valid email address.").isEmail();
   req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
 
