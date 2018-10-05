@@ -53,7 +53,7 @@ Finally, navigate to `http://localhost:3000` and you should see the template bei
 There are many ways to deploy an Node app, and in general, nothing about the deployment process changes because you're using TypeScript.
 In this section, I'll walk you through how to deploy this app to Azure App Service using the extensions available in VS Code because I think it is the easiest and fastest way to get started, as well as the most friendly workflow from a developer's perspective.
 
-## Prerequisites
+## Pre-reqs
 - [**Azure account**](https://azure.microsoft.com/en-us/free/) - If you don't have one, you can sign up for free.
 The Azure free tier gives you plenty of resources to play around with including up to 10 App Service instances, which is what we will be using.
 - [**VS Code**](https://code.visualstudio.com/) - We'll be using the interface provided by VS Code to quickly deploy our app.
@@ -176,7 +176,7 @@ The full folder structure of this app is explained below:
 | **src/public**           | Static assets that will be used client side                                                   |
 | **src/types**            | Holds .d.ts files not found on DefinitelyTyped. Covered more in this [section](#type-definition-dts-files)          |
 | **src**/server.ts        | Entry point to your express app                                                               |
-| **test**                 | Contains your tests. Seperate from source because there is a different build process.         |
+| **test**                 | Contains your tests. Separate from source because there is a different build process.         |
 | **views**                | Views define how your app renders on the client. In this case we're using pug                 |
 | .env.example             | API keys, tokens, passwords, database URI. Clone this, but don't check it in to public repos. |
 | .travis.yml              | Used to configure Travis CI build                                                             |
