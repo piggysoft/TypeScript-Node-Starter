@@ -276,7 +276,7 @@ Below is a list of all the scripts this template has available:
 TypeScript uses `.d.ts` files to provide types for JavaScript libraries that were not written in TypeScript.
 This is great because once you have a `.d.ts` file, TypeScript can type check that library and provide you better help in your editor.
 The TypeScript community actively shares all of the most up-to-date `.d.ts` files for popular libraries on a GitHub repository called [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types).
-Making sure that your `.d.ts` files are setup correctly is super important because once they're in place, you get an incredible amount of high quality type checking (and thus bug catching, IntelliSense, and other editor tools) for free.
+Making sure that your `.d.ts` files are setup correctly is super important because once they're in place, you get an incredible amount high quality of type checking (and thus bug catching, IntelliSense, and other editor tools) for free.
 
 > **Note!** Because we're using `"noImplicitAny": true`, we are required to have a `.d.ts` file for **every** library we use. While you could set `noImplicitAny` to `false` to silence errors about missing `.d.ts` files, it is a best practice to have a `.d.ts` file for every library. (Even if the `.d.ts` file is [basically empty!](#writing-a-dts-file)) 
 
@@ -467,7 +467,7 @@ npm run tslint  // runs only TSLint
 ```
 Notice that TSLint is not a part of the main watch task.
 It can be annoying for TSLint to clutter the output window while in the middle of writing a function, so I elected to only run it only during the full build.
-If you are interested in seeing TSLint feedback as soon as possible, I strongly recommend the [TSLint extension in VS Code]().
+If you are interesting in seeing TSLint feedback as soon as possible, I strongly recommend the [TSLint extension in VS Code]().
 
 ### VSCode Extensions
 
