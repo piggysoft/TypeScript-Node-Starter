@@ -1,7 +1,7 @@
 import passport from "passport";
 import passportLocal from "passport-local";
 import passportFacebook from "passport-facebook";
-import { find } from "lodash";
+import _ from "lodash";
 
 // import { User, UserType } from '../models/User';
 import { User, UserDocument } from "../models/User";
@@ -16,7 +16,9 @@ passport.serializeUser<any, any>((req, user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-    User.findById(id, (err: NativeError, user: UserDocument) => done(err, user));
+    User.findById(id, (err: NativeError, user: UserDocument) => {
+        done(err, user.id);
+    });
 });
 
 
@@ -133,7 +135,7 @@ export const isAuthorized = (req: Request, res: Response, next: NextFunction) =>
     const provider = req.path.split("/").slice(-1)[0];
 
     const user = req.user as UserDocument;
-    if (find(user.tokens, { kind: provider })) {
+    if (_.find(user.tokens, { kind: provider })) {
         next();
     } else {
         res.redirect(`/auth/${provider}`);
